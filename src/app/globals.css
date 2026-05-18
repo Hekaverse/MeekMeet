@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  /* Warm, earthy palette */
+  --cream: #faf6ee;
+  --cream-warm: #f5efe0;
+  --cream-dark: #e8e0cc;
+  --parchment: #f0e6d0;
+  
+  --charcoal: #2c2c2c;
+  --charcoal-light: #4a4a4a;
+  --charcoal-muted: #6b6b6b;
+  
+  --midnight: #1e2337;
+  --midnight-soft: #2a3050;
+  --midnight-warm: #252a40;
+  
+  --wheat: #d4a843;
+  --wheat-light: #e8c97a;
+  --wheat-dark: #b08a30;
+  --wheat-pale: #f5e6c0;
+  
+  --sage: #6b8f5e;
+  --sage-light: #8faa7d;
+  --sage-dark: #4a6b3f;
+  --sage-pale: #e8f0e3;
+  
+  --terracotta: #c67b5c;
+  --terracotta-light: #d99a7e;
+  --terracotta-pale: #f5e0d8;
+  
+  --sky-soft: #c5d5e8;
+  --sky-pale: #e8eef5;
+  
+  --border-warm: rgba(212, 168, 67, 0.25);
+  --border-soft: rgba(44, 44, 44, 0.08);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-warm: var(--cream-warm);
+  --color-cream-dark: var(--cream-dark);
+  --color-parchment: var(--parchment);
+  
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-charcoal-muted: var(--charcoal-muted);
+  
+  --color-midnight: var(--midnight);
+  --color-midnight-soft: var(--midnight-soft);
+  --color-midnight-warm: var(--midnight-warm);
+  
+  --color-wheat: var(--wheat);
+  --color-wheat-light: var(--wheat-light);
+  --color-wheat-dark: var(--wheat-dark);
+  --color-wheat-pale: var(--wheat-pale);
+  
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-sage-dark: var(--sage-dark);
+  --color-sage-pale: var(--sage-pale);
+  
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-light: var(--terracotta-light);
+  --color-terracotta-pale: var(--terracotta-pale);
+  
+  --color-sky-soft: var(--sky-soft);
+  --color-sky-pale: var(--sky-pale);
+  
+  --color-border-warm: var(--border-warm);
+  --color-border-soft: var(--border-soft);
+  
+  --font-sans: var(--font-source);
+  --font-serif: var(--font-cormorant);
+  --font-script: var(--font-caveat);
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream-warm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wheat-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wheat);
+}
+
+::selection {
+  background: rgba(212, 168, 67, 0.25);
+  color: var(--charcoal);
+}
+
+/* Scripture watermark text */
+.scripture-watermark {
+  font-family: var(--font-caveat);
+  color: rgba(212, 168, 67, 0.08);
+  line-height: 1.4;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Warm underline */
+.link-warm {
+  position: relative;
+}
+
+.link-warm::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--terracotta);
+  border-radius: 1px;
+  transition: width 0.4s ease;
+}
+
+.link-warm:hover::after {
+  width: 100%;
+}
+
+/* Ornament divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wheat-dark), transparent);
+}
+
+/* Verse block styling */
+.verse-block {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--wheat);
+}
+
+.verse-block::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  font-family: var(--font-cormorant);
+  font-size: 4rem;
+  color: var(--wheat-pale);
+  line-height: 1;
+}
+
+/* Soft card hover */
+.card-warm {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-warm:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(30, 35, 55, 0.12);
+}
+
+/* Gradient text */
+.text-gradient-warm {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--wheat) 50%, var(--sage) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle grain texture */
+.grain-texture {
+  position: relative;
+}
+
+.grain-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: radial-gradient(circle, var(--charcoal) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
