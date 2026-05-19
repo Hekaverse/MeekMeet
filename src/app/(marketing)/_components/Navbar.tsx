@@ -3,14 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const navLinks = [
-  { href: "#who-we-are", label: "Who We Are" },
-  { href: "#vision", label: "Our Heart" },
-  { href: "#how-it-works", label: "The Journey" },
-  { href: "#new-moon", label: "New Moon" },
-  { href: "#features", label: "What We Do" },
-  { href: "#safety", label: "Safety" },
+  { href: "/about", label: "Who We Are" },
+  { href: "/circles", label: "Circles" },
+  { href: "/#new-moon", label: "New Moon" },
 ];
 
 export default function Navbar() {
@@ -26,31 +24,37 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <Link href="/" className="flex items-center gap-2.5 group">
             <img
               src="/logo.png"
               alt="Meek Meet"
               className="h-12 w-auto rounded-lg group-hover:opacity-90 transition-opacity duration-300"
             />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="link-warm text-sm tracking-wide text-charcoal-light hover:text-charcoal transition-colors duration-300"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#join"
+            <Link
+              href="/shepherd"
               className="px-6 py-2.5 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300 shadow-sm"
             >
-              Become a Leader
-            </a>
+              Become a Shepherd
+            </Link>
+            <Link
+              href="/login"
+              className="text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors duration-300"
+            >
+              Log In
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -75,22 +79,29 @@ export default function Navbar() {
           >
             <div className="px-6 py-8 space-y-5">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="block text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#join"
+              <Link
+                href="/shepherd"
                 onClick={() => setIsOpen(false)}
                 className="inline-block px-6 py-3 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300"
               >
-                Become a Leader
-              </a>
+                Become a Shepherd
+              </Link>
+              <Link
+                href="/login"
+                onClick={() => setIsOpen(false)}
+                className="block text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors"
+              >
+                Log In
+              </Link>
             </div>
           </motion.div>
         )}

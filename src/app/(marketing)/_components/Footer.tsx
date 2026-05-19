@@ -1,6 +1,7 @@
 "use client";
 
 import { BookOpen, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 import AsciiArt from "./AsciiArt";
 
 export default function Footer() {
@@ -14,13 +15,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-16">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <a href="#" className="flex items-center gap-2.5 mb-6">
+            <Link href="/" className="flex items-center gap-2.5 mb-6">
               <img
                 src="/logo.png"
                 alt="Meek Meet"
                 className="h-10 w-auto rounded-lg"
               />
-            </a>
+            </Link>
             <p className="text-sm text-charcoal-muted leading-relaxed max-w-xs">
               A warm community where the meek gather, share their hearts, and 
               build something beautiful — one new moon at a time.
@@ -33,21 +34,19 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                { href: "#who-we-are", label: "Who We Are" },
-                { href: "#vision", label: "Our Heart" },
-                { href: "#how-it-works", label: "The Journey" },
-                { href: "#new-moon", label: "New Moon" },
-                { href: "#features", label: "What We Do" },
-                { href: "#safety", label: "Safety & Trust" },
-                { href: "#join", label: "Become a Leader" },
+                { href: "/about", label: "Who We Are" },
+                { href: "/about#heart", label: "Our Heart" },
+                { href: "/about#journey", label: "The Journey" },
+                { href: "/circles", label: "Circles" },
+                { href: "/shepherd", label: "Become a Shepherd" },
               ].map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-charcoal-muted hover:text-terracotta transition-colors duration-300"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
