@@ -1,17 +1,25 @@
-"use client";
+import { createClient } from "@/lib/supabase/server";
+import CircleCard from "../_components/circle-card";
 
-import { motion } from "framer-motion";
+export const revalidate = 60;
 
-export default function CirclesPage() {
+export default async function CirclesPage() {
+  const supabase = await createClient();
+
+  const { data: circles, error } = await supabase
+    .from("circles")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Failed to fetch circles:", error);
+  }
+
   return (
     <section className="min-h-screen pt-32 pb-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="text-xs tracking-[0.3em] uppercase text-terracotta mb-4 block font-medium">
             Find Your Circle
           </span>
@@ -22,30 +30,27 @@ export default function CirclesPage() {
             Warm gatherings of faith, happening under the new moon across Australia.
             Each circle is shepherded by a faithful leader from your community.
           </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Placeholder circle cards — will be populated from Supabase in Phase 4 */}
-          {[1, 2, 3].map((i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-cream-warm rounded-2xl border border-border-soft p-8 text-center"
-            >
-              <div className="w-16 h-16 bg-wheat-pale rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="font-serif text-2xl text-wheat-dark">{i}</span>
-              </div>
-              <h3 className="font-serif text-xl text-charcoal mb-2">
-                Coming Soon
-              </h3>
-              <p className="text-sm text-charcoal-muted">
-                Circles will appear here once shepherd applications are approved.
-              </p>
-            </motion.div>
-          ))}
         </div>
+
+        {circles && circles.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {circles.map((circle, i) => (
+              <CircleCard key={circle.id} circle={circle} index={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <div className="w-16 h-16 bg-wheat-pale rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="font-serif text-2xl text-wheat-dark">?</span>
+            </div>
+            <h3 className="font-serif text-xl text-charcoal mb-2">
+              No circles yet
+            </h3>
+            <p className="text-charcoal-muted max-w-md mx-auto">
+              Circles will appear here once shepherd applications are approved and communities are established.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
