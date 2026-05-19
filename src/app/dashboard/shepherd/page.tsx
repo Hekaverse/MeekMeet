@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, Clock, Calendar, Settings } from "lucide-react";
+import { BookOpen, Clock, Calendar, Settings, ArrowRight } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -49,60 +49,80 @@ export default async function ShepherdDashboardPage() {
                 </div>
                 <Link
                   href={`/circles/${circle.slug}`}
-                  className="text-sm text-terracotta hover:text-terracotta-light transition-colors"
+                  className="text-sm text-terracotta hover:text-terracotta-light transition-colors flex items-center gap-1"
                 >
-                  View public page →
+                  View public page <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors">
+                <Link
+                  href={`/dashboard/shepherd/${circle.id}/questions`}
+                  className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors group"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-wheat-pale flex items-center justify-center">
                       <BookOpen className="w-5 h-5 text-wheat-dark" strokeWidth={1.5} />
                     </div>
-                    <h3 className="font-medium text-charcoal">Questions</h3>
+                    <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors">
+                      Questions
+                    </h3>
                   </div>
                   <p className="text-sm text-charcoal-muted">
                     Edit the questions asked in your circle.
                   </p>
-                </div>
+                </Link>
 
-                <div className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors">
+                <Link
+                  href={`/dashboard/shepherd/${circle.id}/routine`}
+                  className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors group"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-terracotta-pale flex items-center justify-center">
                       <Clock className="w-5 h-5 text-terracotta" strokeWidth={1.5} />
                     </div>
-                    <h3 className="font-medium text-charcoal">Routine</h3>
+                    <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors">
+                      Routine
+                    </h3>
                   </div>
                   <p className="text-sm text-charcoal-muted">
                     Define the flow and structure of your gatherings.
                   </p>
-                </div>
+                </Link>
 
-                <div className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors">
+                <Link
+                  href={`/dashboard/shepherd/${circle.id}/meetings`}
+                  className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors group"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center">
                       <Calendar className="w-5 h-5 text-sage-dark" strokeWidth={1.5} />
                     </div>
-                    <h3 className="font-medium text-charcoal">Meetings</h3>
+                    <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors">
+                      Meetings
+                    </h3>
                   </div>
                   <p className="text-sm text-charcoal-muted">
                     Schedule times, locations, and manage RSVPs.
                   </p>
-                </div>
+                </Link>
 
-                <div className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors">
+                <Link
+                  href={`/dashboard/shepherd/${circle.id}/settings`}
+                  className="bg-cream rounded-xl border border-border-soft p-5 hover:border-wheat/40 transition-colors group"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-sky-pale flex items-center justify-center">
                       <Settings className="w-5 h-5 text-sky-soft" strokeWidth={1.5} />
                     </div>
-                    <h3 className="font-medium text-charcoal">Settings</h3>
+                    <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors">
+                      Settings
+                    </h3>
                   </div>
                   <p className="text-sm text-charcoal-muted">
                     Update your circle name, description, and image.
                   </p>
-                </div>
+                </Link>
               </div>
             </div>
           ))}
