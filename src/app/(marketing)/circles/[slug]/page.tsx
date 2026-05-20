@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { MapPin, Clock, Calendar, Users, BookOpen } from "lucide-react";
 import Link from "next/link";
+import RsvpSection from "../_components/rsvp-section";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -12,6 +13,9 @@ export const revalidate = 60;
 export default async function CircleDetailPage({ params }: Props) {
   const { slug } = await params;
   const supabase = await createClient();
+
+  // Fetch user
+  const { data: { user } } = await supabase.auth.getUser();
 
   // Fetch circle
   const { data: circle } = await supabase
@@ -44,13 +48,27 @@ export default async function CircleDetailPage({ params }: Props) {
       .order("order_index", { ascending: true }),
     supabase
       .from("meetings")
-      .select("*")
+      .select("id, scheduled_at, duration_minutes, location_name, location_address")
       .eq("circle_id", circle.id)
       .eq("is_cancelled", false)
       .gte("scheduled_at", new Date().toISOString())
       .order("scheduled_at", { ascending: true })
       .limit(5),
   ]);
+
+  // Fetch user RSVPs for these meetings
+  let userRsvps: { meeting_id: string; status: string }[] = [];
+  if (user && meetings && meetings.length > 0) {
+    const { data: rsvps } = await supabase
+      .from("rsvps")
+      .select("meeting_id, status")
+      .eq("user_id", user.id)
+      .in(
+        "meeting_id",
+        meetings.map((m) => m.id)
+      );
+    userRsvps = rsvps ?? [];
+  }
 
   const totalRoutineMinutes =
     (routines ?? []).reduce((sum, r) => sum + (r.duration_minutes ?? 0), 0);
@@ -108,43 +126,16 @@ export default async function CircleDetailPage({ params }: Props) {
               <Calendar className="w-5 h-5 text-terracotta" strokeWidth={1.5} />
               Upcoming Gatherings
             </h2>
-            <div className="space-y-4">
-              {meetings.map((meeting) => (
-                <div
-                  key={meeting.id}
-                  className="bg-cream-warm rounded-xl border border-border-soft p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                >
-                  <div>
-                    <p className="font-medium text-charcoal">
-                      {new Date(meeting.scheduled_at).toLocaleDateString("en-AU", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </p>
-                    <p className="text-sm text-charcoal-muted mt-1">
-                      {new Date(meeting.scheduled_at).toLocaleTimeString("en-AU", {
-                        hour: "numeric",
-                        minute: "2-digit",
-                      })}
-                      {meeting.duration_minutes && ` · ${meeting.duration_minutes} min`}
-                    </p>
-                    {meeting.location_name && (
-                      <p className="text-sm text-charcoal-muted">
-                        {meeting.location_name}
-                      </p>
-                    )}
-                  </div>
-                  <Link
-                    href="/login"
-                    className="px-6 py-2.5 bg-midnight text-cream text-sm rounded-full hover:bg-midnight-soft transition-all text-center"
-                  >
-                    RSVP
-                  </Link>
-                </div>
-              ))}
-            </div>
+            <RsvpSection
+              meetings={meetings}
+              userRsvps={
+                userRsvps.map((r) => ({
+                  meeting_id: r.meeting_id,
+                  status: r.status as "going" | "maybe" | "not_going",
+                }))
+              }
+              isAuthenticated={!!user}
+            />
           </div>
         )}
 
@@ -217,26 +208,45 @@ export default async function CircleDetailPage({ params }: Props) {
 
         {/* CTA */}
         <div className="bg-midnight rounded-3xl p-8 md:p-12 text-center">
-          <h2 className="font-serif text-2xl md:text-3xl text-cream mb-4">
-            Join this Circle
-          </h2>
-          <p className="text-cream/60 max-w-md mx-auto mb-6">
-            Sign in to RSVP for upcoming gatherings and connect with your community.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/login"
-              className="px-8 py-3 bg-wheat text-midnight font-medium tracking-wide text-sm rounded-full hover:bg-wheat-light transition-all"
-            >
-              Sign In to RSVP
-            </Link>
-            <Link
-              href="/shepherd"
-              className="px-8 py-3 border-2 border-wheat/30 text-wheat font-medium tracking-wide text-sm rounded-full hover:border-wheat hover:text-wheat-light transition-all"
-            >
-              Become a Shepherd
-            </Link>
-          </div>
+          {user ? (
+            <>
+              <h2 className="font-serif text-2xl md:text-3xl text-cream mb-4">
+                You're connected
+              </h2>
+              <p className="text-cream/60 max-w-md mx-auto mb-6">
+                Head to your dashboard to see all your upcoming gatherings and circle updates.
+              </p>
+              <Link
+                href="/dashboard"
+                className="px-8 py-3 bg-wheat text-midnight font-medium tracking-wide text-sm rounded-full hover:bg-wheat-light transition-all inline-block"
+              >
+                Go to Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <h2 className="font-serif text-2xl md:text-3xl text-cream mb-4">
+                Join this Circle
+              </h2>
+              <p className="text-cream/60 max-w-md mx-auto mb-6">
+                Sign in to RSVP for upcoming gatherings and connect with your community.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href="/login"
+                  className="px-8 py-3 bg-wheat text-midnight font-medium tracking-wide text-sm rounded-full hover:bg-wheat-light transition-all"
+                >
+                  Sign In to RSVP
+                </Link>
+                <Link
+                  href="/shepherd"
+                  className="px-8 py-3 border-2 border-wheat/30 text-wheat font-medium tracking-wide text-sm rounded-full hover:border-wheat hover:text-wheat-light transition-all"
+                >
+                  Become a Shepherd
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

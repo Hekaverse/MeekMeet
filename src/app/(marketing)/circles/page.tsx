@@ -1,16 +1,31 @@
 import { createClient } from "@/lib/supabase/server";
 import CircleCard from "../_components/circle-card";
+import SearchForm from "./_components/search-form";
 
 export const revalidate = 60;
 
-export default async function CirclesPage() {
+interface Props {
+  searchParams: Promise<{ q?: string; location?: string }>;
+}
+
+export default async function CirclesPage({ searchParams }: Props) {
+  const { q, location } = await searchParams;
   const supabase = await createClient();
 
-  const { data: circles, error } = await supabase
+  let dbQuery = supabase
     .from("circles")
     .select("*")
     .eq("is_active", true)
     .order("created_at", { ascending: false });
+
+  if (q) {
+    dbQuery = dbQuery.or(`name.ilike.%${q}%,description.ilike.%${q}%`);
+  }
+  if (location) {
+    dbQuery = dbQuery.ilike("location", `%${location}%`);
+  }
+
+  const { data: circles, error } = await dbQuery;
 
   if (error) {
     console.error("Failed to fetch circles:", error);
@@ -19,17 +34,18 @@ export default async function CirclesPage() {
   return (
     <section className="min-h-screen pt-32 pb-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <span className="text-xs tracking-[0.3em] uppercase text-terracotta mb-4 block font-medium">
             Find Your Circle
           </span>
           <h1 className="font-serif text-5xl md:text-6xl text-charcoal mb-6">
             Circles Near You
           </h1>
-          <p className="text-lg text-charcoal-muted max-w-2xl mx-auto">
+          <p className="text-lg text-charcoal-muted max-w-2xl mx-auto mb-10">
             Warm gatherings of faith, happening under the new moon across Australia.
             Each circle is shepherded by a faithful leader from your community.
           </p>
+          <SearchForm />
         </div>
 
         {circles && circles.length > 0 ? (
@@ -44,10 +60,10 @@ export default async function CirclesPage() {
               <span className="font-serif text-2xl text-wheat-dark">?</span>
             </div>
             <h3 className="font-serif text-xl text-charcoal mb-2">
-              No circles yet
+              No circles found
             </h3>
             <p className="text-charcoal-muted max-w-md mx-auto">
-              Circles will appear here once shepherd applications are approved and communities are established.
+              Try adjusting your search terms or clearing the filters to see all available circles.
             </p>
           </div>
         )}
