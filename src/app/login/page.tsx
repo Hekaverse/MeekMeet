@@ -18,26 +18,17 @@ export default function LoginPage() {
     setIsLoading(true);
     setError(null);
 
-    console.log("[DEBUG] Attempting magic link for:", email);
-    console.log("[DEBUG] Redirect to:", `${window.location.origin}/auth/callback`);
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
 
-    try {
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) {
-        console.error("[DEBUG] signInWithOtp error:", error);
-        setError(error.message);
-      } else {
-        setIsMagicLinkSent(true);
-      }
-    } catch (err) {
-      console.error("[DEBUG] signInWithOtp threw:", err);
-      setError(err instanceof Error ? err.message : "Unknown error");
+    if (error) {
+      setError(error.message);
+    } else {
+      setIsMagicLinkSent(true);
     }
 
     setIsLoading(false);
