@@ -20,7 +20,7 @@ export async function getApplications(status?: "pending" | "approved" | "rejecte
 
   let query = supabase
     .from("applications")
-    .select("*, user:profiles!user_id(full_name, email)")
+    .select("*")
     .order("submitted_at", { ascending: false });
 
   if (status) query = query.eq("status", status);
