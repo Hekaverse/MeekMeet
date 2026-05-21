@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "@/components/auth-provider";
 
 const navLinks = [
   { href: "/about", label: "Who We Are" },
@@ -13,6 +14,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isLoading } = useAuth();
 
   return (
     <motion.nav
@@ -43,18 +45,30 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/shepherd"
-              className="px-6 py-2.5 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300 shadow-sm"
-            >
-              Become a Shepherd
-            </Link>
-            <Link
-              href="/login"
-              className="text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors duration-300"
-            >
-              Log In
-            </Link>
+            {user ? (
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 px-6 py-2.5 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300 shadow-sm"
+              >
+                <LayoutDashboard className="w-4 h-4" strokeWidth={1.5} />
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/shepherd"
+                  className="px-6 py-2.5 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300 shadow-sm"
+                >
+                  Become a Shepherd
+                </Link>
+                <Link
+                  href="/login"
+                  className="text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors duration-300"
+                >
+                  Log In
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Toggle */}
@@ -88,20 +102,33 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/shepherd"
-                onClick={() => setIsOpen(false)}
-                className="inline-block px-6 py-3 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300"
-              >
-                Become a Shepherd
-              </Link>
-              <Link
-                href="/login"
-                onClick={() => setIsOpen(false)}
-                className="block text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors"
-              >
-                Log In
-              </Link>
+              {user ? (
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsOpen(false)}
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300"
+                >
+                  <LayoutDashboard className="w-4 h-4" strokeWidth={1.5} />
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/shepherd"
+                    onClick={() => setIsOpen(false)}
+                    className="inline-block px-6 py-3 text-sm tracking-wide bg-midnight text-cream rounded-full hover:bg-midnight-soft transition-all duration-300"
+                  >
+                    Become a Shepherd
+                  </Link>
+                  <Link
+                    href="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="block text-sm tracking-wide text-charcoal-light hover:text-terracotta transition-colors"
+                  >
+                    Log In
+                  </Link>
+                </>
+              )}
             </div>
           </motion.div>
         )}
