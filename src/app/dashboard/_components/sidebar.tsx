@@ -9,6 +9,7 @@ import {
   User,
   Shield,
   LogOut,
+  Settings,
 } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 
@@ -22,7 +23,7 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { signOut } = useAuth();
+  const { signOut, role } = useAuth();
 
   return (
     <aside className="w-64 bg-midnight min-h-screen flex flex-col border-r border-wheat/10">
@@ -56,6 +57,20 @@ export default function Sidebar() {
             </Link>
           );
         })}
+
+        {role === "admin" && (
+          <Link
+            href="/dashboard/admin/applications"
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-colors ${
+              pathname.startsWith("/dashboard/admin")
+                ? "bg-wheat/10 text-wheat"
+                : "text-cream/50 hover:text-cream hover:bg-wheat/5"
+            }`}
+          >
+            <Settings className="w-4 h-4" strokeWidth={1.5} />
+            Admin
+          </Link>
+        )}
       </nav>
 
       {/* Logout */}
