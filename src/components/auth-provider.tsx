@@ -24,31 +24,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const supabase = createClient();
 
+  // Listen for auth state changes
   useEffect(() => {
-    const fetchProfile = async (userId: string) => {
-      const { data } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", userId)
-        .single();
-      setRole(data?.role ?? "member");
-    };
-
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        const u = session?.user ?? null;
-        setUser(u);
-        if (u) fetchProfile(u.id);
-        else setRole(null);
+        setUser(session?.user ?? null);
         setIsLoading(false);
       }
     );
 
-    // Check existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      const u = session?.user ?? null;
-      setUser(u);
-      if (u) fetchProfile(u.id);
+      setUser(session?.user ?? null);
       setIsLoading(false);
     });
 
@@ -56,6 +42,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       listener.subscription.unsubscribe();
     };
   }, [supabase]);
+
+  // Fetch profile role when user changes (separate effect, NOT inside onAuthStateChange)
+  useEffect(() => {
+    if (!user) {
+      setRole(null);
+      return;
+    }
+
+    const fetchProfile = async () => {
+      const { data } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+      setRole(data?.role ?? "member");
+    };
+
+    fetchProfile();
+  }, [user, supabase]);
 
   const signOut = async () => {
     await supabase.auth.signOut();
