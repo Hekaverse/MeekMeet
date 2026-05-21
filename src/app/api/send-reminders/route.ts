@@ -7,21 +7,8 @@ import { getResend } from "@/lib/resend";
 export async function GET(request: NextRequest) {
   // Optional: require a secret key to prevent unauthorized calls
   const authHeader = request.headers.get("authorization");
-  const urlSecret = request.nextUrl.searchParams.get("secret");
-  const expected = `Bearer ${process.env.CRON_SECRET}`;
-
-  if (authHeader !== expected && urlSecret !== process.env.CRON_SECRET) {
-    return NextResponse.json(
-      {
-        error: "Unauthorized",
-        debug: {
-          headerReceived: authHeader,
-          headerExpected: expected,
-          secretLength: process.env.CRON_SECRET?.length ?? 0,
-        },
-      },
-      { status: 401 }
-    );
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const supabase = await createClient();
