@@ -7,7 +7,11 @@ import { getResend } from "@/lib/resend";
 export async function GET(request: NextRequest) {
   // Optional: require a secret key to prevent unauthorized calls
   const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  const urlSecret = request.nextUrl.searchParams.get("secret");
+  if (
+    authHeader !== `Bearer ${process.env.CRON_SECRET}` &&
+    urlSecret !== process.env.CRON_SECRET
+  ) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
