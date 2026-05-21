@@ -10,13 +10,30 @@ export default async function AdminApplicationsPage({
   searchParams: Promise<{ status?: "pending" | "approved" | "rejected" }>;
 }) {
   const { status } = await searchParams;
-  const applications = await getApplications(status);
+
+  let applications: any[] = [];
+  let error: string | null = null;
+
+  try {
+    applications = await getApplications(status);
+  } catch (err) {
+    error = err instanceof Error ? err.message : String(err);
+  }
 
   const tabs = [
     { label: "Pending", value: "pending" as const, icon: Clock },
     { label: "Approved", value: "approved" as const, icon: CheckCircle },
     { label: "Rejected", value: "rejected" as const, icon: XCircle },
   ];
+
+  if (error) {
+    return (
+      <div className="p-8 bg-terracotta-pale rounded-2xl border border-terracotta/20">
+        <h1 className="font-serif text-xl text-terracotta mb-2">Error loading applications</h1>
+        <p className="text-sm text-charcoal">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div>
