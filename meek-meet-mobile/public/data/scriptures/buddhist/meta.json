@@ -1,0 +1,9 @@
+{
+  "tradition": "buddhist",
+  "name": "The Dhammapada",
+  "translation": "F. Max Müller",
+  "language": "en",
+  "books": [
+    { "id": "dhammapada", "name": "The Dhammapada", "chapters": 26 }
+  ]
+}

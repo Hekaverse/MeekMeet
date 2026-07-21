@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build core package
+        run: npm run build --workspace=@meekmeet/core
+
+      - name: Build website
+        run: npm run build --workspace=meek-meet
+        env:
+          # next build evaluates env at build time; dummy values keep CI green.
+          # Real values belong in Vercel project settings only.
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: placeholder
+
+      - name: Build mobile app
+        run: npm run build --workspace=meek-meet-mobile
+        env:
+          VITE_SUPABASE_URL: https://placeholder.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: placeholder
+
+      - name: Test mobile app
+        run: npm run test:run --workspace=meek-meet-mobile

@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+
+# builds
+dist/
+.next/
+out/
+build/
+**/.gradle/
+*.tsbuildinfo
+
+# env & secrets
+.env
+.env.*
+!.env.template
+!.env.*.example
+*.keystore
+*.jks
+keystore.properties
+local.properties
+*.pem
+
+# parked pre-monorepo history (meek-meet/.git.bak)
+.git.bak/
+
+# supabase CLI state
+supabase/.temp/
+
+# vercel
+.vercel
+
+# os/editor
+.DS_Store
+Thumbs.db

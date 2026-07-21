@@ -1,0 +1,473 @@
+{
+  "gatherings": [
+    {
+      "id": "st-marys-cathedral-sydney",
+      "name": "St Mary's Cathedral",
+      "tradition": "christian",
+      "denomination": "Catholic",
+      "description": "The spiritual home of Sydney's Catholic community. St Mary's is a place of welcome, prayer, and peace in the heart of the city. All are invited to attend Mass and find a moment of stillness.",
+      "location": "Sydney, NSW",
+      "address": "St Mary's Rd, Sydney NSW 2000",
+      "latitude": -33.8712,
+      "longitude": 151.2131,
+      "website": "https://st-marys-cathedral.org.au",
+      "phone": "(02) 9220 0400",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:30 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "10:00 AM", "label": "Solemn Mass" },
+        { "day": "Sunday", "time": "6:00 PM", "label": "Evening Mass" },
+        { "day": "Monday", "time": "12:10 PM", "label": "Daily Mass" },
+        { "day": "Wednesday", "time": "12:10 PM", "label": "Daily Mass" },
+        { "day": "Friday", "time": "12:10 PM", "label": "Daily Mass" }
+      ]
+    },
+    {
+      "id": "st-andrews-cathedral-sydney",
+      "name": "St Andrew's Cathedral",
+      "tradition": "christian",
+      "denomination": "Anglican",
+      "description": "The cathedral church of the Anglican Diocese of Sydney. A beautiful Gothic Revival building offering traditional worship, choral evensong, and a warm welcome to all.",
+      "location": "Sydney, NSW",
+      "address": "1400 George St, Sydney NSW 2000",
+      "latitude": -33.8710,
+      "longitude": 151.2038,
+      "website": "https://sydneyanglicans.net",
+      "phone": "(02) 9265 1661",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:00 AM", "label": "Holy Communion" },
+        { "day": "Sunday", "time": "10:00 AM", "label": "Cathedral Service" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Evensong" },
+        { "day": "Wednesday", "time": "12:30 PM", "label": "Midweek Eucharist" }
+      ]
+    },
+    {
+      "id": "hillsong-sydney",
+      "name": "Hillsong Church",
+      "tradition": "christian",
+      "denomination": "Pentecostal",
+      "description": "A vibrant, contemporary community of faith. Hillsong gathers people from all walks of life for uplifting worship, practical teaching, and genuine connection.",
+      "location": "Sydney, NSW",
+      "address": "1-5 Solent Cct, Baulkham Hills NSW 2153",
+      "latitude": -33.7333,
+      "longitude": 150.9833,
+      "website": "https://hillsong.com/australia",
+      "phone": "(02) 8853 5353",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "st-patricks-cathedral-melbourne",
+      "name": "St Patrick's Cathedral",
+      "tradition": "christian",
+      "denomination": "Catholic",
+      "description": "A beacon of faith in the centre of Melbourne. St Patrick's offers daily Mass, quiet prayer, and a warm welcome to all who enter its doors.",
+      "location": "Melbourne, VIC",
+      "address": "1 Cathedral Pl, East Melbourne VIC 3002",
+      "latitude": -37.8106,
+      "longitude": 144.9763,
+      "website": "https://melbournecatholic.org.au/stmaryscathedral",
+      "phone": "(03) 9662 2233",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "6:00 PM", "label": "Evening Mass" },
+        { "day": "Monday", "time": "8:00 AM", "label": "Daily Mass" },
+        { "day": "Wednesday", "time": "8:00 AM", "label": "Daily Mass" },
+        { "day": "Friday", "time": "8:00 AM", "label": "Daily Mass" }
+      ]
+    },
+    {
+      "id": "st-pauls-cathedral-melbourne",
+      "name": "St Paul's Cathedral",
+      "tradition": "christian",
+      "denomination": "Anglican",
+      "description": "An Anglican cathedral in the heart of Melbourne, opposite Federation Square. Known for its stunning neo-Gothic architecture and inclusive worship community.",
+      "location": "Melbourne, VIC",
+      "address": "Flinders St, Melbourne VIC 3000",
+      "latitude": -37.8169,
+      "longitude": 144.9674,
+      "website": "https://stpaulscathedral.org.au",
+      "phone": "(03) 9653 4333",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:00 AM", "label": "Eucharist" },
+        { "day": "Sunday", "time": "10:00 AM", "label": "Choral Eucharist" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Evensong" },
+        { "day": "Wednesday", "time": "12:30 PM", "label": "Eucharist" }
+      ]
+    },
+    {
+      "id": "st-johns-cathedral-brisbane",
+      "name": "St John's Cathedral",
+      "tradition": "christian",
+      "denomination": "Anglican",
+      "description": "A renowned Brisbane landmark and the mother church of the Anglican Diocese of Brisbane. Built from local sandstone over more than a century, it offers a space for open-minded conversation and inclusion.",
+      "location": "Brisbane, QLD",
+      "address": "373 Ann St, Brisbane QLD 4000",
+      "latitude": -27.4640,
+      "longitude": 153.0300,
+      "website": "https://stjohnscathedral.com.au",
+      "phone": "(07) 3835 2222",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "7:30 AM", "label": "Eucharist" },
+        { "day": "Sunday", "time": "9:30 AM", "label": "Choral Eucharist" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Evensong" },
+        { "day": "Wednesday", "time": "12:30 PM", "label": "Eucharist" }
+      ]
+    },
+    {
+      "id": "st-stephens-cathedral-brisbane",
+      "name": "St Stephen's Cathedral",
+      "tradition": "christian",
+      "denomination": "Catholic",
+      "description": "The mother parish of the Archdiocese of Brisbane and a masterpiece of Gothic Revival architecture. A place of worship and community in the heart of the CBD.",
+      "location": "Brisbane, QLD",
+      "address": "249 Elizabeth St, Brisbane QLD 4000",
+      "latitude": -27.4686,
+      "longitude": 153.0285,
+      "website": "https://cathedralofststephen.org.au",
+      "phone": "(07) 3324 3030",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:00 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "10:00 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "6:00 PM", "label": "Mass" },
+        { "day": "Monday", "time": "12:05 PM", "label": "Daily Mass" },
+        { "day": "Wednesday", "time": "12:05 PM", "label": "Daily Mass" },
+        { "day": "Friday", "time": "12:05 PM", "label": "Daily Mass" }
+      ]
+    },
+    {
+      "id": "st-georges-cathedral-perth",
+      "name": "St George's Cathedral",
+      "tradition": "christian",
+      "denomination": "Anglican",
+      "description": "The principal Anglican church in Perth and the mother-church of the Anglican Diocese of Perth. A beautiful heritage building offering traditional worship in the city centre.",
+      "location": "Perth, WA",
+      "address": "38 St Georges Tce, Perth WA 6000",
+      "latitude": -31.9557,
+      "longitude": 115.8612,
+      "website": "https://perthcathedral.org",
+      "phone": "(08) 9325 5676",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:00 AM", "label": "Eucharist" },
+        { "day": "Sunday", "time": "10:00 AM", "label": "Choral Eucharist" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Evensong" },
+        { "day": "Wednesday", "time": "12:30 PM", "label": "Eucharist" }
+      ]
+    },
+    {
+      "id": "st-peters-cathedral-adelaide",
+      "name": "St Peter's Cathedral",
+      "tradition": "christian",
+      "denomination": "Anglican",
+      "description": "The mother-church to all Anglican churches in South Australia. A stunning Gothic Revival cathedral in North Adelaide, offering daily worship and a welcoming community.",
+      "location": "Adelaide, SA",
+      "address": "27 King William Rd, North Adelaide SA 5006",
+      "latitude": -34.9091,
+      "longitude": 138.5986,
+      "website": "https://stpeters-cathedral.org.au",
+      "phone": "(08) 8267 4551",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:00 AM", "label": "Eucharist" },
+        { "day": "Sunday", "time": "10:00 AM", "label": "Choral Eucharist" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Evensong" },
+        { "day": "Wednesday", "time": "12:30 PM", "label": "Eucharist" }
+      ]
+    },
+    {
+      "id": "hunter-bible-church-newcastle",
+      "name": "Hunter Bible Church",
+      "tradition": "christian",
+      "denomination": "Evangelical",
+      "description": "A gospel-centred church in the heart of Newcastle. Hunter Bible Church is committed to teaching the Bible, building community, and serving the Hunter region.",
+      "location": "Newcastle, NSW",
+      "address": "45 Merewether St, Newcastle NSW 2300",
+      "latitude": -32.9283,
+      "longitude": 151.7817,
+      "website": "https://hunterbiblechurch.org",
+      "phone": "(02) 4929 5199",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "5:00 PM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "saltchurch-wollongong",
+      "name": "Salt Church",
+      "tradition": "christian",
+      "denomination": "Evangelical",
+      "description": "A vibrant church community in Wollongong, passionate about Jesus and people. Salt Church gathers for contemporary worship, biblical teaching, and local outreach.",
+      "location": "Wollongong, NSW",
+      "address": "60 Stewart St, Wollongong NSW 2500",
+      "latitude": -34.4251,
+      "longitude": 150.8931,
+      "website": "https://saltchurch.info",
+      "phone": "(02) 4226 4888",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "albert-street-uniting-brisbane",
+      "name": "Albert Street Uniting Church",
+      "tradition": "christian",
+      "denomination": "Uniting",
+      "description": "A heritage-listed church in the heart of Brisbane CBD, known for its striking architecture and commitment to justice, inclusion, and community service.",
+      "location": "Brisbane, QLD",
+      "address": "319 Albert St, Brisbane QLD 4000",
+      "latitude": -27.4633,
+      "longitude": 153.0267,
+      "website": "https://albertstreetuniting.org.au",
+      "phone": "(07) 3221 2066",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Worship" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Worship" }
+      ]
+    },
+    {
+      "id": "redeemer-city-church-sydney",
+      "name": "Redeemer City Church",
+      "tradition": "christian",
+      "denomination": "Presbyterian",
+      "description": "A gospel-centred church in Chatswood serving Sydney's north shore. Redeemer City Church is committed to knowing Jesus and making Him known through faithful teaching and caring community.",
+      "location": "Sydney, NSW",
+      "address": "48 Archer St, Chatswood NSW 2067",
+      "latitude": -33.7963,
+      "longitude": 151.1807,
+      "website": "https://redeemer.city",
+      "phone": "(02) 9413 4888",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "10:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "4:00 PM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "village-church-bulli",
+      "name": "Village Church",
+      "tradition": "christian",
+      "denomination": "Baptist",
+      "description": "A community-focused church in the northern Illawarra. Village Church is passionate about Jesus, family, and serving the local community through love and practical support.",
+      "location": "Bulli, NSW",
+      "address": "37 Maitland St, Bulli NSW 2516",
+      "latitude": -34.3354,
+      "longitude": 150.9154,
+      "website": "https://myvillagechurch.net",
+      "phone": "(02) 4284 1933",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "axis-church-north-lakes",
+      "name": "Axis Church",
+      "tradition": "christian",
+      "denomination": "Pentecostal",
+      "description": "The neighbourhood church in North Lakes built on Jesus Christ. A contemporary, community-focused church with strong kids and youth programs.",
+      "location": "North Lakes, QLD",
+      "address": "1 Gardenia Parade, North Lakes QLD 4509",
+      "latitude": -27.2333,
+      "longitude": 153.0167,
+      "website": "https://axischurch.org.au",
+      "phone": "(07) 3491 8800",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "the-lakes-church-tuggerah",
+      "name": "The Lakes Church",
+      "tradition": "christian",
+      "denomination": "Baptist",
+      "description": "A welcoming church on the Central Coast, gathering people from across the region for worship, discipleship, and community engagement.",
+      "location": "Tuggerah, NSW",
+      "address": "1 Bryant Dr, Tuggerah NSW 2259",
+      "latitude": -33.3067,
+      "longitude": 151.4183,
+      "website": "https://thelakes.net.au",
+      "phone": "(02) 4353 3533",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "our-lady-star-of-the-sea-terrigal",
+      "name": "Our Lady Star of the Sea",
+      "tradition": "christian",
+      "denomination": "Catholic",
+      "description": "A welcoming Catholic parish in Terrigal serving the Central Coast community. Known for its beautiful coastal setting and warm fellowship.",
+      "location": "Terrigal, NSW",
+      "address": "165 Serpentine Rd, Terrigal NSW 2260",
+      "latitude": -33.4471,
+      "longitude": 151.4423,
+      "website": "https://olssparish.org.au",
+      "phone": "(02) 4384 3109",
+      "meetingTimes": [
+        { "day": "Saturday", "time": "5:00 PM", "label": "Vigil Mass" },
+        { "day": "Sunday", "time": "8:00 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "9:30 AM", "label": "Mass" }
+      ]
+    },
+    {
+      "id": "ev-church-erina",
+      "name": "EV Church",
+      "tradition": "christian",
+      "denomination": "Evangelical",
+      "description": "A vibrant, contemporary church in Erina with a strong focus on biblical teaching, worship, and building community across the Central Coast.",
+      "location": "Erina, NSW",
+      "address": "331 Terrigal Dr, Erina NSW 2250",
+      "latitude": -33.4354,
+      "longitude": 151.3922,
+      "website": "https://evchurch.info",
+      "phone": "(02) 4367 2100",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "8:30 AM", "label": "Service" },
+        { "day": "Sunday", "time": "10:30 AM", "label": "Service" },
+        { "day": "Sunday", "time": "6:00 PM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "st-patricks-gosford",
+      "name": "St Patrick's Parish",
+      "tradition": "christian",
+      "denomination": "Catholic",
+      "description": "The Catholic parish of Gosford under the pastoral care of the priests of the Society of St Patrick. A place of worship, prayer, and community outreach on the Central Coast.",
+      "location": "East Gosford, NSW",
+      "address": "76 York St, East Gosford NSW 2250",
+      "latitude": -33.4332,
+      "longitude": 151.3501,
+      "website": "https://stpatricksgosford.org.au",
+      "phone": "(02) 4323 2377",
+      "meetingTimes": [
+        { "day": "Saturday", "time": "6:00 PM", "label": "Vigil Mass" },
+        { "day": "Sunday", "time": "8:00 AM", "label": "Mass" },
+        { "day": "Sunday", "time": "9:30 AM", "label": "Mass" },
+        { "day": "Wednesday", "time": "9:00 AM", "label": "Daily Mass" }
+      ]
+    },
+    {
+      "id": "c3-church-gosford",
+      "name": "C3 Church Gosford",
+      "tradition": "christian",
+      "denomination": "Pentecostal",
+      "description": "Part of the C3 Church Global movement, C3 Gosford is a contemporary church passionate about Jesus, people, and seeing lives transformed across the Central Coast.",
+      "location": "Gosford, NSW",
+      "address": "129-131 Erina St, Gosford NSW 2250",
+      "latitude": -33.4251,
+      "longitude": 151.3410,
+      "website": "https://c3church.com/gosford",
+      "phone": "(02) 4322 3607",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "10:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "6:00 PM", "label": "Service" },
+        { "day": "Friday", "time": "10:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "life-church-kincumber",
+      "name": "Life Church",
+      "tradition": "christian",
+      "denomination": "Pentecostal",
+      "description": "A life-giving church in Kincumber building community, raising leaders, and helping people discover their purpose in Christ on the Central Coast.",
+      "location": "Kincumber, NSW",
+      "address": "4 Hawke St, Kincumber NSW 2251",
+      "latitude": -33.4678,
+      "longitude": 151.4012,
+      "website": "https://lifechurch.cc",
+      "phone": "(02) 4369 1000",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "holy-family-anglican-wyoming",
+      "name": "Holy Family Anglican Church",
+      "tradition": "christian",
+      "denomination": "Anglican",
+      "description": "An Anglican parish in Wyoming offering traditional worship, pastoral care, and a welcoming community for all ages on the Central Coast.",
+      "location": "Wyoming, NSW",
+      "address": "2 Ronald Ave, Wyoming NSW 2250",
+      "latitude": -33.4085,
+      "longitude": 151.3523,
+      "website": "https://holyfamilywyoming.org.au",
+      "phone": "(02) 4328 2354",
+      "meetingTimes": [
+        { "day": "Saturday", "time": "5:00 PM", "label": "Holy Communion" },
+        { "day": "Sunday", "time": "7:30 AM", "label": "Holy Communion" },
+        { "day": "Sunday", "time": "9:30 AM", "label": "Family Service" }
+      ]
+    },
+    {
+      "id": "ettalong-baptist-church",
+      "name": "Ettalong Baptist Church",
+      "tradition": "christian",
+      "denomination": "Baptist",
+      "description": "A thriving Baptist community serving people across a broad range of ages on the Woy Woy Peninsula. Known for its family services and community pantry.",
+      "location": "Ettalong Beach, NSW",
+      "address": "8 Barrenjoey Rd, Ettalong Beach NSW 2257",
+      "latitude": -33.4725,
+      "longitude": 151.3421,
+      "website": "https://ettalongbaptist.org.au",
+      "phone": "(02) 4341 1234",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Family Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "central-life-church-wyong",
+      "name": "Central Life Church",
+      "tradition": "christian",
+      "denomination": "Pentecostal",
+      "description": "A church passionate about God, life and people. Central Life meets in Wyong and is committed to creating a welcoming space for everyone on the Central Coast.",
+      "location": "Wyong, NSW",
+      "address": "40 Kooindah Blvd, Wyong NSW 2259",
+      "latitude": -33.2835,
+      "longitude": 151.4167,
+      "website": "https://centrallifechurch.com.au",
+      "phone": "(02) 4353 8800",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "10:00 AM", "label": "Service" }
+      ]
+    },
+    {
+      "id": "lakes-baptist-church-gorokan",
+      "name": "Lakes Baptist Church",
+      "tradition": "christian",
+      "denomination": "Baptist",
+      "description": "A friendly Baptist church in Gorokan welcoming people from across the northern Central Coast. Great music, inspiring worship, and strong community connections.",
+      "location": "Gorokan, NSW",
+      "address": "45 Marks Rd, Gorokan NSW 2263",
+      "latitude": -33.4167,
+      "longitude": 151.5003,
+      "website": "https://lakesbaptist.org.au",
+      "phone": "(02) 4392 1234",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:30 AM", "label": "Morning Worship" }
+      ]
+    },
+    {
+      "id": "the-entrance-baptist-church",
+      "name": "The Entrance Baptist Church",
+      "tradition": "christian",
+      "denomination": "Baptist",
+      "description": "A warm, welcoming church at The Entrance on the Central Coast. Gathering for worship, fellowship, and serving the local community with love.",
+      "location": "The Entrance, NSW",
+      "address": "239-243 The Entrance Rd, The Entrance NSW 2261",
+      "latitude": -33.3501,
+      "longitude": 151.5005,
+      "website": "https://theentrancebaptist.org.au",
+      "phone": "(02) 4332 1234",
+      "meetingTimes": [
+        { "day": "Sunday", "time": "9:00 AM", "label": "Service" },
+        { "day": "Sunday", "time": "11:00 AM", "label": "Service" }
+      ]
+    }
+  ]
+}

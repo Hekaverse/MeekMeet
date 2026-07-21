@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf6ee;
+  --color-cream-warm: #f5efe0;
+  --color-parchment: #f0e6d0;
+  --color-charcoal: #2c2c2c;
+  --color-charcoal-light: #4a4a4a;
+  --color-charcoal-muted: #6b6b6b;
+  --color-midnight: #1e2337;
+  --color-midnight-soft: #2a3050;
+  --color-wheat: #c9a96e;
+  --color-wheat-light: #d9bd8a;
+  --color-wheat-dark: #a6834a;
+  --color-wheat-pale: #f5efe0;
+  --color-terracotta: #b85c3f;
+  --color-terracotta-light: #c96e52;
+  --color-terracotta-pale: #f5e0d8;
+  --color-sage: #6b8f71;
+  --color-sage-dark: #4a6b50;
+  --color-sage-pale: #e0ece2;
+  --color-sky-soft: #7a9cc6;
+  --color-sky-pale: #e0eaf5;
+  --color-border-soft: #e8e0cc;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+}
+
+html {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+body {
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safe area insets for notched devices */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Custom scrollbar hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

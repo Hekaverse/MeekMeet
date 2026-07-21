@@ -1,0 +1,22 @@
+{
+  "name": "meek-meet-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*",
+    "meek-meet",
+    "meek-meet-mobile"
+  ],
+  "scripts": {
+    "web": "npm run dev --workspace=meek-meet",
+    "mobile": "npm run dev --workspace=meek-meet-mobile",
+    "build": "npm run build --workspace=@meekmeet/core && npm run build --workspace=meek-meet",
+    "build:web": "npm run build --workspace=meek-meet",
+    "build:mobile": "npm run build --workspace=meek-meet-mobile",
+    "test:mobile": "npm test --workspace=meek-meet-mobile"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1",
+    "typescript": "^5.8.0"
+  }
+}

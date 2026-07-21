@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You've Been Invited to Meek Meet</title>
+  <style>
+    @media only screen and (max-width: 620px) {
+      .container { width: 100% !important; padding: 16px !important; }
+      .button { width: 100% !important; display: block !important; text-align: center !important; box-sizing: border-box !important; }
+      .hide-mobile { display: none !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#f5efe0;font-family:'Inter', system-ui, -apple-system, sans-serif;-webkit-font-smoothing:antialiased;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+      <td align="center" style="padding:48px 16px;">
+        <table role="presentation" class="container" cellspacing="0" cellpadding="0" border="0" width="520" style="background-color:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(30,35,55,0.10);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #1e2337 0%, #2a3050 100%); padding:40px 48px 32px 48px; text-align:center; position:relative;">
+              <table role="presentation" class="hide-mobile" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="position:relative; height:0;">
+                    <div style="position:absolute; top:-60px; right:-20px; width:120px; height:120px; border-radius:50%; background:rgba(201,169,110,0.08);"></div>
+                    <div style="position:absolute; top:-30px; left:-10px; width:80px; height:80px; border-radius:50%; background:rgba(184,92,63,0.06);"></div>
+                  </td>
+                </tr>
+              </table>
+
+              <h1 style="margin:0;color:#faf6ee;font-size:26px;font-weight:400;letter-spacing:0.5px;font-family:Georgia, 'Times New Roman', serif;">Meek Meet</h1>
+              <p style="margin:10px 0 0 0;color:#c9a96e;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;opacity:0.9;">Daily Scripture · Warm Community</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px 48px 32px 48px;">
+              <p style="margin:0 0 20px 0;color:#2c2c2c;font-size:17px;line-height:1.6;font-weight:500;">You're invited</p>
+
+              <p style="margin:0 0 28px 0;color:#4a4a4a;font-size:15px;line-height:1.7;">
+                Someone has invited you to join <strong style="color:#1e2337;">Meek Meet</strong> — a quiet place to read scripture and gather in community. Tap the button below to accept your invitation.
+              </p>
+
+              <!-- CTA Button -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td align="center" style="padding:4px 0 32px 0;">
+                    <a href="{{ .ConfirmationURL }}" class="button" style="display:inline-block;padding:16px 40px;background:linear-gradient(135deg, #6b8f71 0%, #4a6b50 100%);color:#ffffff;text-decoration:none;border-radius:999px;font-size:15px;font-weight:500;letter-spacing:0.3px;box-shadow:0 4px 16px rgba(107,143,113,0.25);">Accept Invitation</a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px 0;color:#6b6b6b;font-size:13px;line-height:1.5;">
+                Or copy and paste this link:
+              </p>
+              <p style="margin:0;padding:14px 16px;background-color:#faf6ee;border-radius:10px;word-break:break-all;font-size:12px;color:#4a4a4a;font-family:'SF Mono', Monaco, monospace;line-height:1.5;border:1px solid #e8e0cc;">
+                {{ .ConfirmationURL }}
+              </p>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 48px;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr><td style="border-top:1px solid #f0e6d0;"></td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:28px 48px 40px 48px;text-align:center;">
+              <p style="margin:0 0 8px 0;color:#6b6b6b;font-size:12px;line-height:1.6;">
+                Not expecting this? You can safely ignore this invitation.
+              </p>
+              <p style="margin:0;color:#9e9e9e;font-size:11px;line-height:1.5;">
+                Sent to {{ .Email }} · <span style="color:#b85c3f;">Meek Meet</span>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Meek Meet</string>
+    <string name="title_activity_main">Meek Meet</string>
+    <string name="package_name">com.meekmeet.app</string>
+    <string name="custom_url_scheme">com.meekmeet.app</string>
+</resources>

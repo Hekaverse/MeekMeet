@@ -1,0 +1,11 @@
+-- ============================================
+-- Seed data for development
+-- ============================================
+
+-- NOTE: External gatherings (churches, mosques, temples, etc.) are now loaded
+-- from the mobile app's static JSON file at /data/gatherings.json
+-- This allows the app to display real places of worship immediately,
+-- acting as a retainer while Meek Meet's own circles are being prepared.
+--
+-- Meek Meet circles should be added directly via the app or Supabase dashboard
+-- once shepherds are approved and ready to lead.
