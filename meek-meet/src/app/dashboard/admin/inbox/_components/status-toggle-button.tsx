@@ -16,7 +16,15 @@ export default function StatusToggleButton({
 
   return (
     <button
-      onClick={() => startTransition(() => toggleMessageStatus(messageId, status))}
+      onClick={() =>
+        startTransition(async () => {
+          try {
+            await toggleMessageStatus(messageId, status);
+          } catch (err) {
+            alert(err instanceof Error ? err.message : "Failed to update message");
+          }
+        })
+      }
       disabled={isPending}
       className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 disabled:opacity-60 ${
         isResolved
