@@ -79,7 +79,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {role === "admin" && (
           <Link
-            href="/dashboard/admin/applications"
+            href="/dashboard/admin"
             onClick={onClose}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-colors ${
               pathname.startsWith("/dashboard/admin")

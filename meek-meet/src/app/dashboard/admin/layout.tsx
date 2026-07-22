@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import AdminNav from "./_components/admin-nav";
 
 export default async function AdminLayout({
   children,
@@ -19,5 +20,10 @@ export default async function AdminLayout({
 
   if (profile?.role !== "admin") redirect("/dashboard");
 
-  return <>{children}</>;
+  return (
+    <div>
+      <AdminNav />
+      {children}
+    </div>
+  );
 }

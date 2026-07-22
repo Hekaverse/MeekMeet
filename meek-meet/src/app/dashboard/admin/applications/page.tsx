@@ -1,5 +1,5 @@
 import { getApplications } from "../actions";
-import { CheckCircle, XCircle, Clock, User, Mail, MapPin, Church, Calendar, Shield, Building2 } from "lucide-react";
+import { CheckCircle, XCircle, Clock, User, Mail, MapPin, Church } from "lucide-react";
 import { ApproveButton, RejectButton } from "./_components/action-buttons";
 
 export const revalidate = 0;
@@ -42,7 +42,7 @@ export default async function AdminApplicationsPage({
         Review and verify applications from those called to lead.
       </p>
 
-      {/* Tabs */}
+      {/* Status filter tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
         <a
           href="/dashboard/admin/applications"
@@ -53,20 +53,6 @@ export default async function AdminApplicationsPage({
           }`}
         >
           All
-        </a>
-        <a
-          href="/dashboard/admin/verification"
-          className="px-4 py-2 rounded-full text-sm font-medium transition-all bg-cream-warm text-charcoal hover:bg-wheat-pale flex items-center gap-2"
-        >
-          <Shield className="w-3.5 h-3.5" strokeWidth={1.5} />
-          Verification
-        </a>
-        <a
-          href="/dashboard/admin/authorities"
-          className="px-4 py-2 rounded-full text-sm font-medium transition-all bg-cream-warm text-charcoal hover:bg-wheat-pale flex items-center gap-2"
-        >
-          <Building2 className="w-3.5 h-3.5" strokeWidth={1.5} />
-          Authorities
         </a>
         {tabs.map((tab) => {
           const Icon = tab.icon;

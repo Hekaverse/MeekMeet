@@ -31,14 +31,26 @@ Respond ONLY with valid JSON in this exact format:
     {
       "question": "string",
       "context": "string",
-      "category": "Community|Culture|Economy|Environment|Education|Family|Governance|Health|Justice|Technology"
+      "category": "<exactly ONE of: Community, Culture, Economy, Environment, Education, Family, Governance, Health, Justice, Technology>"
     }
   ]
 }`
 
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+// Word-boundary matching: 'studies' must not trip 'dies', 'warning' must not
+// trip 'war', 'deadline' must not trip 'dead' — otherwise every headline is
+// blocked and the pipeline can never produce questions.
+const BLOCKED_PATTERN = new RegExp(
+  `\\b(?:${BLOCKED_KEYWORDS.map(escapeRegExp).join('|')})\\b`,
+  'i'
+)
+
 function isSafeArticle(article: { title?: string; description?: string }): boolean {
-  const text = `${article.title ?? ''} ${article.description ?? ''}`.toLowerCase()
-  return !BLOCKED_KEYWORDS.some((kw) => text.includes(kw))
+  const text = `${article.title ?? ''} ${article.description ?? ''}`
+  return !BLOCKED_PATTERN.test(text)
 }
 
 interface NewsArticle {
@@ -81,18 +93,36 @@ serve(async (req) => {
   }
 
   try {
-    // 1. Fetch AU headlines
-    const newsRes = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=au&pageSize=20&apiKey=${NEWS_API_KEY}`,
-      { headers: { 'X-Api-Key': NEWS_API_KEY } }
-    )
+    // 1. Fetch fresh Australia-related articles.
+    // NewsAPI's top-headlines endpoint has no AU sources (returns 0), so use
+    // /everything with an Australia query — full coverage on the free plan.
+    const params = new URLSearchParams({
+      q: 'australia',
+      language: 'en',
+      sortBy: 'publishedAt',
+      pageSize: '20',
+      apiKey: NEWS_API_KEY,
+    })
+    const newsRes = await fetch(`https://newsapi.org/v2/everything?${params}`, {
+      headers: { 'X-Api-Key': NEWS_API_KEY },
+    })
 
     if (!newsRes.ok) {
       throw new Error(`NewsAPI error: ${newsRes.status}`)
     }
 
     const newsData = await newsRes.json()
-    const articles: NewsArticle[] = (newsData.articles ?? []).filter(isSafeArticle).slice(0, 5)
+    // Filter unsafe content and dedupe syndicated repeats (same title)
+    const seen = new Set<string>()
+    const articles: NewsArticle[] = (newsData.articles ?? [])
+      .filter(isSafeArticle)
+      .filter((a) => {
+        const t = (a.title ?? '').trim().toLowerCase()
+        if (seen.has(t)) return false
+        seen.add(t)
+        return true
+      })
+      .slice(0, 5)
 
     if (articles.length === 0) {
       return new Response(JSON.stringify({ generated: 0, reason: 'No safe articles found' }), {
@@ -116,7 +146,7 @@ Convert this into 2 universal discussion questions.`
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama3-8b-8192',
+          model: 'llama-3.3-70b-versatile',
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
             { role: 'user', content: userPrompt },

@@ -264,3 +264,34 @@ export async function getDocumentSignedUrl(storagePath: string) {
   if (error) throw new Error(error.message);
   return data.signedUrl;
 }
+
+export async function toggleMessageStatus(messageId: string, currentStatus: string) {
+  if (!isValidUuid(messageId)) throw new Error("Invalid message ID");
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not authenticated");
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  if (profile?.role !== "admin") throw new Error("Not authorized");
+
+  const resolving = currentStatus !== "resolved";
+
+  const { error } = await supabase
+    .from("admin_messages")
+    .update({
+      status: resolving ? "resolved" : "open",
+      resolved_at: resolving ? new Date().toISOString() : null,
+      resolved_by: resolving ? user.id : null,
+    })
+    .eq("id", messageId);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/dashboard/admin/inbox");
+}
