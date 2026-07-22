@@ -4,8 +4,8 @@ const config: CapacitorConfig = {
   appId: 'com.meekmeet.app',
   appName: 'Meek Meet',
   webDir: 'dist',
-  versionName: '1.0.19',
-  versionCode: 120,
+  versionName: '1.0.20',
+  versionCode: 121,
   server: {
     androidScheme: 'https',
   },

@@ -26,6 +26,8 @@ interface SelectedQuestion extends RevolutionaryQuestion {
 
 type ReleaseMode = 'immediate' | 'day_before' | 'live_reveal'
 
+const NEWS_CATEGORY = 'From the News'
+
 export default function MeetingQuestionsScreen() {
   const { meetingId } = useParams<{ meetingId: string }>()
   const navigate = useNavigate()
@@ -35,6 +37,7 @@ export default function MeetingQuestionsScreen() {
   const [selected, setSelected] = useState<SelectedQuestion[]>([])
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
   const [meeting, setMeeting] = useState<{ scheduled_at: string; questions_release_mode: ReleaseMode } | null>(null)
+  const [newsQuestions, setNewsQuestions] = useState<RevolutionaryQuestion[]>([])
 
   useEffect(() => {
     if (!meetingId) return
@@ -47,6 +50,34 @@ export default function MeetingQuestionsScreen() {
         if (data) setMeeting(data)
       })
   }, [meetingId])
+
+  // Fresh AI-generated news questions (publicly readable while unexpired)
+  useEffect(() => {
+    supabase
+      .from('news_questions')
+      .select('id, question, context, category')
+      .gt('expires_at', new Date().toISOString())
+      .order('generated_at', { ascending: false })
+      .limit(10)
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setNewsQuestions(
+            data.map((row: { id: string; question: string; context: string }) => ({
+              id: `news-${row.id}`,
+              question: row.question,
+              context: row.context,
+              category: NEWS_CATEGORY,
+            }))
+          )
+          setExpandedCategory(NEWS_CATEGORY)
+        }
+      })
+  }, [])
+
+  const categories = [
+    ...(newsQuestions.length > 0 ? [NEWS_CATEGORY] : []),
+    ...questionCategories,
+  ]
 
   const toggleQuestion = (q: RevolutionaryQuestion) => {
     hapticSelect()
@@ -265,8 +296,10 @@ export default function MeetingQuestionsScreen() {
 
       {/* Question pool */}
       <div className="px-5 py-4 space-y-3 pb-24">
-        {questionCategories.map((category) => {
-          const qs = revolutionaryQuestions.filter((q) => q.category === category)
+        {categories.map((category) => {
+          const qs = category === NEWS_CATEGORY
+            ? newsQuestions
+            : revolutionaryQuestions.filter((q) => q.category === category)
           const isExpanded = expandedCategory === category
           return (
             <motion.div

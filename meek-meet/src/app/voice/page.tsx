@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Globe, MapPin, TrendingUp, MessageCircle, Heart, Users, Loader2, Quote } from "lucide-react";
+import { Globe, MapPin, TrendingUp, MessageCircle, Heart, Users, Loader2, Quote, Newspaper } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
 interface InsightData {
   id: string;
@@ -16,9 +17,17 @@ interface InsightData {
   raw_summary: string;
 }
 
+interface NewsQuestion {
+  id: string;
+  question: string;
+  context: string;
+  category: string;
+}
+
 export default function VoicePage() {
   const [globalInsight, setGlobalInsight] = useState<InsightData | null>(null);
   const [regionalInsights, setRegionalInsights] = useState<InsightData[]>([]);
+  const [newsQuestions, setNewsQuestions] = useState<NewsQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -34,6 +43,18 @@ export default function VoicePage() {
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    // Fresh news-driven questions are publicly readable (RLS: expires_at > now()).
+    const supabase = createClient();
+    supabase
+      .from("news_questions")
+      .select("id, question, context, category")
+      .gt("expires_at", new Date().toISOString())
+      .order("generated_at", { ascending: false })
+      .limit(6)
+      .then(({ data }) => setNewsQuestions(data ?? []));
   }, []);
 
   if (loading) {
@@ -116,6 +137,32 @@ export default function VoicePage() {
           <div className="bg-cream-warm rounded-3xl border border-border-soft p-10 text-center mb-12">
             <p className="text-charcoal-muted">Global insights will appear once circles begin sharing their voices.</p>
           </div>
+        )}
+
+        {newsQuestions.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Newspaper className="w-4 h-4 text-terracotta" strokeWidth={1.5} />
+              <h2 className="font-serif text-2xl text-charcoal">This Week&apos;s Questions</h2>
+            </div>
+            <p className="text-sm text-charcoal-muted mb-4">
+              Fresh discussion questions shaped from the week&apos;s headlines, being asked in circles right now.
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              {newsQuestions.map((q) => (
+                <div key={q.id} className="bg-cream-warm rounded-2xl border border-border-soft p-5">
+                  <p className="text-sm text-charcoal leading-relaxed mb-2">{q.question}</p>
+                  <p className="text-xs text-charcoal-muted/70 mb-2">{q.context}</p>
+                  <span className="text-[10px] uppercase tracking-wider text-terracotta">{q.category}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         )}
 
         <div className="grid md:grid-cols-2 gap-6">
